@@ -1,0 +1,9 @@
+type Cat {
+    id: Int!
+    name: String!
+    age: String
+}
+
+type Query {
+    getAllCats: [Cat]
+}
