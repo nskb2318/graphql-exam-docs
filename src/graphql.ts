@@ -16,6 +16,8 @@ export class Cat {
 
 export abstract class IQuery {
     abstract getAllCats(): Nullable<Nullable<Cat>[]> | Promise<Nullable<Nullable<Cat>[]>>;
+
+    abstract getOneCat(id: number): Nullable<Cat> | Promise<Nullable<Cat>>;
 }
 
 type Nullable<T> = T | null;
