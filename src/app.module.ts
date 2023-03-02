@@ -13,14 +13,6 @@ import { join } from 'path';
                 path: join(process.cwd(), 'src/graphql.ts'),
                 outputAs: 'class',
             },
-            context: ({ req, connection }) => {
-                if (req) {
-                    const user = req.headers.authorization;
-                    return { ...req, user };
-                } else {
-                    return connection;
-                }
-            },
         }),
         CatModule,
     ],

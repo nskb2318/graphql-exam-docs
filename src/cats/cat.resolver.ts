@@ -1,6 +1,8 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CatService } from './cat.service';
 import { JoinDto } from '../graphql';
+import { Res } from '@nestjs/common';
+import { Response } from 'express';
 
 @Resolver('Cat')
 export class CatResolver {
@@ -33,7 +35,19 @@ export class CatResolver {
      */
     //post 예제
     @Mutation('joinCat')
-    async joinCat(@Args('joinDto') joinDto: JoinDto): Promise<any> {
+    async joinCat(
+        @Args('joinDto') joinDto: JoinDto,
+        @Context() context: { req: Request },
+        @Res() res: Response,
+    ): Promise<any> {
+        const headers: any = context.req.headers;
+        const authorization = headers.authorization;
+        console.log(authorization);
+        res.cookie('refresh-token', 'aaa', {
+            httpOnly: true,
+            secure: true,
+        });
+
         return this.catService.join(joinDto);
     }
 }
