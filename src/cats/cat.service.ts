@@ -1,3 +1,5 @@
+import { JoinDto } from '../graphql';
+
 export class CatService {
     public getOne(id: number) {
         return {
@@ -20,5 +22,12 @@ export class CatService {
                 age: null,
             },
         ];
+    }
+
+    join(joinDto: JoinDto) {
+        const { email, password } = joinDto;
+        console.log(email);
+        console.log(password);
+        return 'a';
     }
 }

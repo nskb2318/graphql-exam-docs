@@ -8,3 +8,12 @@ type Query {
     getAllCats: [Cat],
     getOneCat(id: Int!): Cat
 }
+
+type Mutation {
+    joinCat(joinDto: JoinDto): String
+}
+
+input JoinDto {
+    email: String!
+    password: String!
+}
